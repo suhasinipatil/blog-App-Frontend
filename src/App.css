@@ -1,38 +1,55 @@
-.App {
+h3 {
   text-align: center;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.articleItem {
+    display: flex;
+    flex-direction: column;
+    border-radius: calc(0.1 * 100px);
+    box-shadow: 0px 4px 14px 0px rgba(70, 70, 70, 0.38);
+    justify-content: space-around;
+    background: #fff;
+    font-size: 1rem;
+    margin-right: 2rem;
+    margin-bottom: 0.5rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.articleBody {
+    text-align: left;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    padding-left: 1.5rem;
+    border-radius: calc(0.1 * 100px);
+    box-shadow: 0px 4px 14px 0px rgba(70, 70, 70, 0.38);
+    background: #fff;
+    margin-bottom: 0%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.commentBody {
+  text-align: left;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  padding-left: 3rem;
+  border-radius: calc(0.1 * 100px);
+  box-shadow: 0px 4px 14px 0px rgba(70, 70, 70, 0.38);
+  background: #fff;
+  margin-bottom: 0.35rem;
+}
+
+.articleAuthor{
+  margin: 0;
+}
+
+.titleAuthor {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  text-align: center;
+  margin-right: 2rem;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.articleTitle {
+  margin: 0; /* remove default margin from h2 element */
+  text-align: center; /* center the title horizontally */
+  flex: 1; /* allow the title to take up available space, pushing the author to the right */
 }
