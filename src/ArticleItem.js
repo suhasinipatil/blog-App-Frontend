@@ -1,5 +1,7 @@
-const ArticleItem = ({props}) => {
+import { useEffect, useState } from "react";
 
+const ArticleItem = ({props, comments}) => {
+  
     return (
         <div className="articleItem">
             <div className="titleAuthor">
@@ -7,13 +9,13 @@ const ArticleItem = ({props}) => {
                 <h5 className="articleAuthor">{props.author}</h5>
             </div>
             <h3>{props.subtitle}</h3>
-            <p className="articleBody">{props.content}</p>
+            <p className="articleBody">{props.body}</p>
             <h4 style={{ textAlign: 'left', marginLeft: '30px' }}>Comments:</h4>
             <div>
                 <ul>
-                    {props.comments.map((comment, index) => (
+                    {comments.map((comment, index) => (
                         <li key={index} className="commentBody">
-                            {comment}
+                            {comment.body}
                         </li>
                     ))}
                 </ul>

@@ -1,11 +1,13 @@
 import './App.css';
-import ArticleList from './ArticleList';
+import { BrowserRouter } from 'react-router-dom';
+import BlogApp from './BlogApp';
 
 function App() {
   return (
     <div>
-      <h1 style={{ textAlign: 'center' }}>Blog App</h1>
-      <ArticleList />
+      <BrowserRouter>
+        <BlogApp />
+      </BrowserRouter>
     </div>
   );
 }

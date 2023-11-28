@@ -11,8 +11,9 @@ h3 {
     justify-content: space-around;
     background: #fff;
     font-size: 1rem;
-    margin-right: 2rem;
-    margin-bottom: 0.5rem;
+    margin-right: 4rem;
+    margin-left: 4rem;
+    margin-top: 2rem;
 }
 
 .articleBody {
@@ -52,4 +53,15 @@ h3 {
   margin: 0; /* remove default margin from h2 element */
   text-align: center; /* center the title horizontally */
   flex: 1; /* allow the title to take up available space, pushing the author to the right */
+}
+
+.loginHeaderStyle{
+  text-align: center;
+  color: #aeadad;
+  line-height: 1.5em;
+  text-transform: lowercase;
+  font-size: 5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  margin-top: 7rem;
 }
