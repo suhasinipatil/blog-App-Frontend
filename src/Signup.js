@@ -6,9 +6,42 @@ const Signup = () => {
     const [password, setPassword] = useState("");
     const [bio, setBio] = useState("");
     const [username, setUsername] = useState("");
+    const [error, setError] = useState("");
 
     const handleSignup = () => {
-       
+    // Create an object with the user's signup data
+    const userData = {
+        username: username,
+        password: password,
+        email: email,
+        bio: bio,
+    };
+    console.log(JSON.stringify(userData));
+    // Make the API request
+    fetch('http://localhost:8888/users', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+        })
+        .then(response => {
+            // if (!response.ok) {
+            //     throw new Error(response.message);
+            // }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.log(error);
+            if (error instanceof SyntaxError && error.message.includes("Unexpected token")) {
+                setError("User already exists");
+            } else {
+                setError(error.message);
+            }
+        });
     };
     
     return (
@@ -66,6 +99,11 @@ const Signup = () => {
                         </td>
                     </tr>
                 </table>
+                {error && (
+                    <div className={styles.errorContainer}>
+                        <p className={styles.errorMessage}>{error}</p>
+                    </div>
+                )}
             </div>
         </div>
     );
