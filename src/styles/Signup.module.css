@@ -68,3 +68,15 @@
 .buttonStyle:hover {
   background-color: #7e8287;
 }
+
+.errorMessage {
+  color: red;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.loginText{
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 1rem;
+}

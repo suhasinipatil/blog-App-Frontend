@@ -39,3 +39,7 @@
     cursor: pointer;
   }
   
+  .signupText {
+    text-align: center;
+    line-height: 1.5em;
+  }

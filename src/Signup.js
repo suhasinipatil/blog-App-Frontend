@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './styles/Signup.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     const [email, setEmail] = useState("");
@@ -7,6 +8,7 @@ const Signup = () => {
     const [bio, setBio] = useState("");
     const [username, setUsername] = useState("");
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const handleSignup = () => {
     // Create an object with the user's signup data
@@ -26,18 +28,17 @@ const Signup = () => {
         body: JSON.stringify(userData),
         })
         .then(response => {
-            // if (!response.ok) {
-            //     throw new Error(response.message);
-            // }
             return response.json();
         })
         .then(data => {
             console.log(data);
+            // Redirect to the home page
+            navigate("/");
         })
         .catch(error => {
             console.log(error);
             if (error instanceof SyntaxError && error.message.includes("Unexpected token")) {
-                setError("User already exists");
+                setError("Username has already been taken");
             } else {
                 setError(error.message);
             }
@@ -64,7 +65,7 @@ const Signup = () => {
                         <td>
                             <h4 className={styles.labelStyle}>Password</h4>
                             <input
-                                type="password"
+                                type='password'
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 className={styles.inputStyle}
@@ -96,6 +97,11 @@ const Signup = () => {
                     <tr>
                         <td colSpan="2">
                             <button onClick={handleSignup} className={styles.buttonStyle}>Create Account</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan="2">
+                            <p className={styles.loginText}>Already have an account? <a href="/login">Login</a></p>
                         </td>
                     </tr>
                 </table>
