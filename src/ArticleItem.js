@@ -12,12 +12,14 @@ const ArticleItem = ({props, comments}) => {
             <p className="articleBody">{props.body}</p>
             <h4 style={{ textAlign: 'left', marginLeft: '30px' }}>Comments:</h4>
             <div>
+                
                 <ul>
                     {comments.map((comment, index) => (
                         <li key={index} className="commentBody">
                             {comment.body}
                         </li>
                     ))}
+                    
                 </ul>
             </div> 
             

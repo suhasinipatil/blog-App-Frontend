@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import ArticleItem from "./ArticleItem";
 import { AuthContext } from "./AuthContext";
+import CreateArticle from "./CreateArticle";
 
 const ArticleList = () => {
     const [articles, setArticles] = useState([]);
@@ -27,7 +28,8 @@ const ArticleList = () => {
                     <a href="/login">Login</a>
                 </button>
             </div>
-            <h2 className="articleAuthor">Welcome {username}</h2>
+            <h2 className="welcomeMessage">Welcome {username}</h2>
+            <CreateArticle  />
             <ul>
                 {articles.map((article) => (
                     <ArticleItem key={article.id} props={article} comments={article.commentEntities} />
