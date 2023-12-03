@@ -1,13 +1,13 @@
 .commentBody{
     margin-left: 2rem;
     margin-right: 5vw;
-    padding-right: 51vw;
     border-radius: calc(0.1 * 100px);
     box-shadow: 0px 4px 14px 0px rgba(70, 70, 70, 0.38);
     background: #fff;
     margin-bottom: 1.35rem;
     word-wrap: break-word;
     height: 3rem;
+    width: 75%;
 }
 
 .buttonStyle{
@@ -19,3 +19,14 @@
     color: rgb(255, 255, 255);
     cursor: pointer;
 }
+
+.disabled{
+    border: none;
+    background-color: #758488;
+    font-size: 15px;
+    width: 12%;
+    height: 3rem;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    opacity: 0.5;
+  }
