@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+// Desc: This file contains the ArticleItem component which is used to display the article title, author, subtitle, body, and comments.
+
+import CreateComment from "./CreateComment";
 
 const ArticleItem = ({props, comments}) => {
   
@@ -12,9 +14,9 @@ const ArticleItem = ({props, comments}) => {
             <p className="articleBody">{props.body}</p>
             <h4 style={{ textAlign: 'left', marginLeft: '30px' }}>Comments:</h4>
             <div>
-                
+                <CreateComment postId={props.id} />
                 <ul>
-                    {comments.map((comment, index) => (
+                    {comments && comments.map((comment, index) => (
                         <li key={index} className="commentBody">
                             {comment.body}
                         </li>

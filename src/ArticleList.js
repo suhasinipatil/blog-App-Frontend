@@ -5,7 +5,11 @@ import CreateArticle from "./CreateArticle";
 
 const ArticleList = () => {
     const [articles, setArticles] = useState([]);
-    const { token, loggedIn, username } = useContext(AuthContext);
+    const { username } = useContext(AuthContext);
+
+    const addNewArticle = (newArticle) => {
+        setArticles([newArticle, ...articles]);
+    };
 
     useEffect(() => {
         fetch('http://localhost:8888/articles')
@@ -29,7 +33,7 @@ const ArticleList = () => {
                 </button>
             </div>
             <h2 className="welcomeMessage">Welcome {username}</h2>
-            <CreateArticle  />
+            <CreateArticle addNewArticle={addNewArticle} />
             <ul>
                 {articles.map((article) => (
                     <ArticleItem key={article.id} props={article} comments={article.commentEntities} />
@@ -38,4 +42,5 @@ const ArticleList = () => {
         </div>
     );
 }
+
 export default ArticleList;

@@ -2,12 +2,12 @@ import { useState, useContext } from 'react';
 import styles from './styles/CreateArticle.module.css';
 import { AuthContext } from './AuthContext';
 
-const CreateArticle = () => {
+const CreateArticle = ({ addNewArticle }) => {
     const [title, setTitle] = useState('');
     const [subtitle, setsubTitle] = useState('');
     const [slug, setSlug] = useState('');
     const [content, setContent] = useState('');
-    const { token , loggedIn, username } = useContext(AuthContext);
+    const { token , loggedIn } = useContext(AuthContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -31,6 +31,11 @@ const CreateArticle = () => {
             })
             .then(data => {
                 console.log(data);
+                addNewArticle(data);
+                setTitle('');
+                setsubTitle('');
+                setSlug('');
+                setContent('');
             })
             .catch(error => {
                 console.log(error);
