@@ -75,3 +75,31 @@ h3 {
   font-weight: 600;
   margin-left: 6.5rem;
 }
+
+.editIcon{
+  border-radius: 2px;
+  border: none;
+  background-color: #758488;
+  font-size: 18px;
+  width: 10%;
+  height: 30px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  margin-top: .5rem;
+  margin-left: 62vw;
+  margin-right: 2rem;
+}
+
+.deleteIcon{
+  border-radius: 2px;
+  border: none;
+  background-color: #758488;
+  font-size: 18px;
+  width: 10%;
+  height: 30px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  margin-top: .5vw;
+  margin-left: 1vw;
+  margin-right: 1vw;
+}
