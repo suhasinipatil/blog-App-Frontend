@@ -5,7 +5,7 @@ import CreateArticle from "./CreateArticle";
 
 const ArticleList = () => {
     const [articles, setArticles] = useState([]);
-    const { username } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     const addNewArticle = (newArticle) => {
         setArticles([newArticle, ...articles]);
@@ -32,7 +32,7 @@ const ArticleList = () => {
                     <a href="/login">Login</a>
                 </button>
             </div>
-            <h2 className="welcomeMessage">Welcome {username}</h2>
+            <h2 className="welcomeMessage">Welcome {user.username}</h2>
             <CreateArticle addNewArticle={addNewArticle} />
             <ul>
                 {articles.map((article) => (

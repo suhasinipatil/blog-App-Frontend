@@ -7,7 +7,7 @@ const CreateArticle = ({ addNewArticle }) => {
     const [subtitle, setsubTitle] = useState('');
     const [slug, setSlug] = useState('');
     const [content, setContent] = useState('');
-    const { token , loggedIn } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -22,7 +22,7 @@ const CreateArticle = ({ addNewArticle }) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${user.token}`,
             },
             body: JSON.stringify(article),
             })
@@ -73,7 +73,7 @@ const CreateArticle = ({ addNewArticle }) => {
                     className={styles.paragraph}
                     onChange={(e) => setContent(e.target.value)}
                 />
-                <button className={`${styles.postButton} ${loggedIn ? '' : styles.disabled}`} disabled={!loggedIn}>POST</button>
+                <button className={`${styles.postButton} ${user.loggedIn ? '' : styles.disabled}`} disabled={!user.loggedIn}>POST</button>
             </form>
         </div>
     );

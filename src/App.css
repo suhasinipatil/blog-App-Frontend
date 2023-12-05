@@ -90,6 +90,21 @@ h3 {
   margin-right: 2rem;
 }
 
+.editIconDisabled{
+  border-radius: 2px;
+  border: none;
+  background-color: #97a7ac;
+  font-size: 18px;
+  width: 10%;
+  height: 30px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  margin-top: .5rem;
+  margin-left: 62vw;
+  margin-right: 2rem;
+  opacity: 0.5;
+}
+
 .deleteIcon{
   border-radius: 2px;
   border: none;
@@ -102,4 +117,19 @@ h3 {
   margin-top: .5vw;
   margin-left: 1vw;
   margin-right: 1vw;
+}
+
+.deleteDisabled{
+  border-radius: 2px;
+  border: none;
+  background-color: #97a7ac;
+  font-size: 18px;
+  width: 10%;
+  height: 30px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  margin-top: .5vw;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  opacity: 0.5;
 }

@@ -6,7 +6,7 @@ import { AuthContext } from "./AuthContext";
 
 const ArticleItem = ({props, comments}) => {
     const [articleComments, setArticleComments] = useState(comments); 
-    const { token , loggedIn } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     const addComment = (newComment) => {
         // Add the new comment to the beginning of the comments list
@@ -14,10 +14,21 @@ const ArticleItem = ({props, comments}) => {
     };
     
     const handleDelete = (id) => {
+        console.log(id+ " delete");
     };
 
     const handleEdit = (id) => {
+        console.log(id+ " edit");
+        // fetch(`http://localhost:8888/articles/${id}`, {
+        //     method: 'PATCH',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         Authorization: `Bearer ${user.token}`,
+        //     },
+        //     body: JSON.stringify({
     };
+
+    const isAuthor = user.loggedIn && user.id === props.authorId;
 
     return (
         <div className="articleItem">
@@ -28,8 +39,18 @@ const ArticleItem = ({props, comments}) => {
             <h3>{props.subtitle}</h3>
             <p className="articleBody">{props.body}</p>
             <div className="actions">
-                <button className="editIcon" onClick={() => handleEdit(props.id)} >Edit</button>
-                <button className="deleteIcon" onClick={() => handleDelete(props.id)} >Delete</button>
+                <button 
+                    className={`editIcon ${isAuthor ? '' : 'editIconDisabled'}`}
+                    onClick={() => handleEdit(props.id)}
+                    disabled={!isAuthor}
+                 >Edit
+                 </button>
+                <button 
+                    className={`deleteIcon ${isAuthor ? '' : 'deleteDisabled'}`}  
+                    onClick={() => handleDelete(props.id)} 
+                    disabled={!isAuthor}
+                 >Delete
+                 </button>
             </div>
             <h4 style={{ textAlign: 'left', marginLeft: '30px' }}>Comments:</h4>
             <div>

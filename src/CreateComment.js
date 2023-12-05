@@ -4,7 +4,7 @@ import { AuthContext } from "./AuthContext";
 
 const CreateComment = ({ postId, addComment }) => {
   const [comment, setComment] = useState("");
-  const { token , loggedIn } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const Submit = (e) => {
     e.preventDefault();
@@ -17,7 +17,7 @@ const CreateComment = ({ postId, addComment }) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${user.token}`,
         },
         body: JSON.stringify(commentData),
         })
@@ -43,7 +43,7 @@ const CreateComment = ({ postId, addComment }) => {
             className={styles.commentBody}
             onChange={(e) => setComment(e.target.value)}
             />
-            <button className={`${styles.buttonStyle} ${loggedIn ? '' : styles.disabled}`} disabled={!loggedIn} onClick={Submit}>Add Comment</button>
+            <button className={`${styles.buttonStyle} ${user.loggedIn ? '' : styles.disabled}`} disabled={!user.loggedIn} onClick={Submit}>Add Comment</button>
         </div>
   );
 };

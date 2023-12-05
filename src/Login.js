@@ -8,7 +8,8 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState("");
     const navigate = useNavigate();
-    const { setToken, setLoggedIn, setUsername } = useContext(AuthContext);
+    const { handleSetUser } = useContext(AuthContext);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(usernameLoggedIn, password);
@@ -31,9 +32,13 @@ const Login = () => {
             .then(data => {
                 console.log(data);
                 // Set the token in AuthContext
-                setToken(data.token);
-                setLoggedIn(true);
-                setUsername(usernameLoggedIn);
+                const updatedUser = {
+                    token: data.token,
+                    loggedIn: true,
+                    username: usernameLoggedIn,
+                    id: data.id,
+                  };
+                handleSetUser(updatedUser);
                  // Redirect to the home page
                 navigate("/");
             })
