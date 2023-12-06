@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import ArticleItem from "./ArticleItem";
 import { AuthContext } from "./AuthContext";
 import CreateArticle from "./CreateArticle";
+import Header from "./Header";
 
 const ArticleList = () => {
     const [articles, setArticles] = useState([]);
@@ -26,14 +27,9 @@ const ArticleList = () => {
 
     return (
         <div>
-            <div className="titleAuthor">
-                <h1 className="articleTitle">Blog App</h1>
-                <button className="articleAuthor">
-                    <a href="/login">Login</a>
-                </button>
-            </div>
+            <Header />
             <h2 className="welcomeMessage">Welcome {user.username}</h2>
-            <CreateArticle addNewArticle={addNewArticle} />
+            {/* <CreateArticle addNewArticle={addNewArticle} /> */}
             <ul>
                 {articles.map((article) => (
                     <ArticleItem key={article.id} props={article} comments={article.commentEntities} />

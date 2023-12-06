@@ -3,10 +3,12 @@
 import CreateComment from "./CreateComment";
 import { useState, useContext } from "react";
 import { AuthContext } from "./AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const ArticleItem = ({props, comments}) => {
     const [articleComments, setArticleComments] = useState(comments); 
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const addComment = (newComment) => {
         // Add the new comment to the beginning of the comments list
@@ -17,19 +19,12 @@ const ArticleItem = ({props, comments}) => {
         console.log(id+ " delete");
     };
 
-    const handleEdit = (id) => {
-        console.log(id+ " edit");
-        // fetch(`http://localhost:8888/articles/${id}`, {
-        //     method: 'PATCH',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         Authorization: `Bearer ${user.token}`,
-        //     },
-        //     body: JSON.stringify({
+    const handleEdit = (id, title, body) => {
+        navigate(`/edit/${id}`, { state: { id: id, title: title, body: body } });
     };
 
-    const isAuthor = user.loggedIn && user.id === props.authorId;
-
+    const isAuthor = user.loggedIn && user.id == props.authorId;
+   
     return (
         <div className="articleItem">
             <div className="titleAuthor">
@@ -41,7 +36,7 @@ const ArticleItem = ({props, comments}) => {
             <div className="actions">
                 <button 
                     className={`editIcon ${isAuthor ? '' : 'editIconDisabled'}`}
-                    onClick={() => handleEdit(props.id)}
+                    onClick={() => handleEdit(props.id, props.title, props.body)}
                     disabled={!isAuthor}
                  >Edit
                  </button>
