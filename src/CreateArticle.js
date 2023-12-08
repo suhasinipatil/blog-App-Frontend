@@ -1,21 +1,20 @@
 import { useState, useContext } from 'react';
 import styles from './styles/CreateArticle.module.css';
 import { AuthContext } from './AuthContext';
+import Header from './Header';
+import { ArticleContext } from './ArticleContext';
 
-const CreateArticle = ({ addNewArticle }) => {
+const CreateArticle = () => {
     const [title, setTitle] = useState('');
-    const [subtitle, setsubTitle] = useState('');
-    const [slug, setSlug] = useState('');
-    const [content, setContent] = useState('');
+    const [body, setBody] = useState('');
     const { user } = useContext(AuthContext);
+    const { addNewArticle } = useContext(ArticleContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const article = { 
             title: title,
-            subtitle: subtitle,
-            slug: slug,
-            body: content
+            body: body,
         };
 
         fetch('http://localhost:8888/articles', {
@@ -33,9 +32,7 @@ const CreateArticle = ({ addNewArticle }) => {
                 console.log(data);
                 addNewArticle(data);
                 setTitle('');
-                setsubTitle('');
-                setSlug('');
-                setContent('');
+                setBody('');
             })
             .catch(error => {
                 console.log(error);
@@ -43,38 +40,25 @@ const CreateArticle = ({ addNewArticle }) => {
     };
     
     return (
-        <div className={styles.articleNew}>
+        <div>
+            <Header />
             <form className={styles.form} onSubmit={handleSubmit}>
                 <input 
-                    type="text"
-                    placeholder="Title"
-                    value={title}
-                    className={styles.inputheading}
-                    onChange={(e) => setTitle(e.target.value)}
+                        type="text"
+                        placeholder="Title"
+                        value={title}
+                        className={styles.inputheading}
+                        onChange={(e) => setTitle(e.target.value)}
                 />
-                <input 
-                    type="text"
-                    placeholder="SubTitle"
-                    value={subtitle}
-                    className={styles.inputsubTitleheading}
-                    onChange={(e) => setsubTitle(e.target.value)}
-                />
-                <input 
-                    type="text"
-                    placeholder="Slug"
-                    value={slug}
-                    className={styles.inputsubheading}
-                    onChange={(e) => setSlug(e.target.value)}
-                />
-                <input 
-                    type="rich text"
+                <textarea
                     placeholder="Content"
-                    value={content}
-                    className={styles.paragraph}
-                    onChange={(e) => setContent(e.target.value)}
-                />
+                    value={body}
+                    className={`${styles.paragraph} ${styles.largeInput}`}
+                    onChange={(e) => setBody(e.target.value)}
+                ></textarea>
                 <button className={`${styles.postButton} ${user.loggedIn ? '' : styles.disabled}`} disabled={!user.loggedIn}>POST</button>
             </form>
+            
         </div>
     );
 }

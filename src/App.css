@@ -26,6 +26,12 @@ h3 {
     background: #fff;
     margin-bottom: 0%;
     word-wrap: break-word;
+    max-height: 6em; /* Adjust the value to show 2-3 lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Adjust the value to show 2-3 lines */
+    -webkit-box-orient: vertical;
 }
 
 .commentBody {

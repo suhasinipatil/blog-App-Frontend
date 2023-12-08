@@ -59,7 +59,7 @@ const EditArticle = () => {
                     className={`${styles.paragraph} ${styles.largeInput}`}
                     onChange={(e) => setBody(e.target.value)}
                 ></textarea>
-                <button className={`${styles.postButton} ${user.loggedIn ? '' : styles.disabled}`} disabled={!user.loggedIn}>POST</button>
+                <button className={`${styles.postButton} ${user.loggedIn ? '' : styles.disabled}`} disabled={!user.loggedIn}>Update</button>
             </form>
             
         </div>

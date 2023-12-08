@@ -5,14 +5,14 @@ import { useState, useContext } from "react";
 import { AuthContext } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 
-const ArticleItem = ({props, comments}) => {
-    const [articleComments, setArticleComments] = useState(comments); 
+const ArticleItem = ({props, comment}) => {
+    const [articleComments, setArticleComments] = useState(comment); 
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const addComment = (newComment) => {
         // Add the new comment to the beginning of the comments list
-        setArticleComments([newComment, ...comments]);
+        setArticleComments([newComment, ...comment]);
     };
     
     const handleDelete = (id) => {
