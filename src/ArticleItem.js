@@ -5,14 +5,19 @@ import { useState, useContext } from "react";
 import { AuthContext } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 
-const ArticleItem = ({props, comment}) => {
-    const [articleComments, setArticleComments] = useState(comment); 
+const ArticleItem = ({props}) => {
+    const [articleComments, setArticleComments] = useState(props.commentEntities); 
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
+    const [isCollapsed, setIsCollapsed] = useState(true);
+
+    const toggleCollapse = () => {
+        setIsCollapsed(!isCollapsed);
+    };
 
     const addComment = (newComment) => {
         // Add the new comment to the beginning of the comments list
-        setArticleComments([newComment, ...comment]);
+        setArticleComments([newComment, ...props.commentEntities]);
     };
     
     const handleDelete = (id) => {
@@ -23,7 +28,7 @@ const ArticleItem = ({props, comment}) => {
         navigate(`/edit/${id}`, { state: { id: id, title: title, body: body } });
     };
 
-    const isAuthor = user.loggedIn && user.id == props.authorId;
+    const isAuthor = user.loggedIn && user.id === props.authorId;
    
     return (
         <div className="articleItem">
@@ -33,7 +38,7 @@ const ArticleItem = ({props, comment}) => {
             </div>
             <h3>{props.subtitle}</h3>
             <p className="articleBody">{props.body}</p>
-            <div className="actions">
+            {/* <div className="actions">
                 <button 
                     className={`editIcon ${isAuthor ? '' : 'editIconDisabled'}`}
                     onClick={() => handleEdit(props.id, props.title, props.body)}
@@ -50,14 +55,17 @@ const ArticleItem = ({props, comment}) => {
             <h4 style={{ textAlign: 'left', marginLeft: '30px' }}>Comments:</h4>
             <div>
                 <CreateComment postId={props.id} addComment={addComment}/>
-                <ul>
+                <button onClick={toggleCollapse}>
+                    {isCollapsed ? "Show Comments" : "Hide Comments"}
+                </button>
+                <ul className={`comment-section ${isCollapsed ? "collapsed" : ""}`}>
                     {articleComments && articleComments.map((comment, index) => (
-                        <li key={index} className="commentBody">
-                            {comment.body}
-                        </li>
+                    <li key={index} className="commentBody">
+                        {comment.body}
+                    </li>
                     ))}
                 </ul>
-            </div> 
+            </div>  */}
         </div>
     );
 }

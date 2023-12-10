@@ -3,12 +3,14 @@ import styles from './styles/CreateArticle.module.css';
 import { AuthContext } from './AuthContext';
 import Header from './Header';
 import { ArticleContext } from './ArticleContext';
+import { useNavigate } from 'react-router-dom';
 
 const CreateArticle = () => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const { user } = useContext(AuthContext);
     const { addNewArticle } = useContext(ArticleContext);
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -33,6 +35,7 @@ const CreateArticle = () => {
                 addNewArticle(data);
                 setTitle('');
                 setBody('');
+                navigate('/');
             })
             .catch(error => {
                 console.log(error);

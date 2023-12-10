@@ -24,7 +24,7 @@ h3 {
     border-radius: calc(0.1 * 100px);
     box-shadow: 0px 4px 14px 0px rgba(70, 70, 70, 0.38);
     background: #fff;
-    margin-bottom: 0%;
+    margin-bottom: 2%;
     word-wrap: break-word;
     max-height: 6em; /* Adjust the value to show 2-3 lines */
     overflow: hidden;
@@ -138,4 +138,14 @@ h3 {
   margin-left: 1vw;
   margin-right: 1vw;
   opacity: 0.5;
+}
+
+.comment-section {
+  max-height: 100px;
+  overflow: auto;
+}
+
+.comment-section.collapsed {
+  max-height: 0;
+  overflow: hidden;
 }
