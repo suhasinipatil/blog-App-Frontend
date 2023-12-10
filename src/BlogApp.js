@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Signup from "./Signup";
 import EditArticle from "./EditArticle";
 import CreateArticle from "./CreateArticle";
+import ReadArticle from "./ReadArticle";
 
 const BlogApp = () => {
     return(
@@ -13,6 +14,7 @@ const BlogApp = () => {
             <Route path="/signup" element={<Signup />} />
             <Route path="/edit/:id" element={<EditArticle />} />
             <Route path="/create" element={<CreateArticle />} />
+            <Route path="/articles/:id" element={<ReadArticle />} />
             <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
     );

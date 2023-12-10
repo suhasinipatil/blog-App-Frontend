@@ -149,3 +149,30 @@ h3 {
   max-height: 0;
   overflow: hidden;
 }
+
+.link-text {
+  color: inherit;
+  text-decoration: none;
+}
+
+.title{
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.body{
+  font-size: 1.2rem;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding: 1%;
+  text-align: justify;
+  white-space: pre-line;
+}
+
+.commentsLabel{
+  margin-left: 5.5%;
+  margin-right: 5%;
+  margin-bottom: 1%;
+}
