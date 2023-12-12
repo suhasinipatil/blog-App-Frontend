@@ -8,8 +8,13 @@ const CreateComment = ({ postId, addComment }) => {
 
   const Submit = (e) => {
     e.preventDefault();
+
+    if(comment.trim() === "") {
+        alert("Comment cannot be empty");
+        return;
+    }
+    
     const commentData = {
-        title: "",
         body: comment,
     };
     console.log({postId});
@@ -35,14 +40,14 @@ const CreateComment = ({ postId, addComment }) => {
     };
 
     return (
-        <div>
-        <input
-            type="text"
-            placeholder="Comment"
-            value={comment}
-            className={styles.commentBody}
-            onChange={(e) => setComment(e.target.value)}
-            />
+        <div className={styles.divStyle}>
+            <textarea
+                type="text"
+                placeholder="Comment"
+                value={comment}
+                className={styles.commentBody}
+                onChange={(e) => setComment(e.target.value)}
+            ></textarea>
             <button className={`${styles.buttonStyle} ${user.loggedIn ? '' : styles.disabled}`} disabled={!user.loggedIn} onClick={Submit}>Add Comment</button>
         </div>
   );

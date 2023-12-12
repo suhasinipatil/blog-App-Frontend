@@ -14,6 +14,22 @@ const CreateArticle = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if(title.trim() === "") {
+            alert("Title cannot be empty");
+            return;
+        }
+        
+        if(title.trim().length < 5) {
+            alert("Title should be at least 5 characters long");
+            return;
+        }
+
+        if(body.trim() === "") {
+            alert("Content cannot be empty");
+            return;
+        }
+
         const article = { 
             title: title,
             body: body,
@@ -49,6 +65,7 @@ const CreateArticle = () => {
                 <input 
                         type="text"
                         placeholder="Title"
+                        required
                         value={title}
                         className={styles.inputheading}
                         onChange={(e) => setTitle(e.target.value)}
