@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import CreateComment from "./CreateComment";
 import { AuthContext } from "./AuthContext";
+import Comment from "./Comment";
 
 const ReadArticle = () => {
     const { id } = useParams();
@@ -11,13 +12,12 @@ const ReadArticle = () => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const handleDelete = (id) => {
-        console.log(id+ " delete");
+    const handleEdit = (id, title, body) => {
+        navigate(`/edit/${id}`, { state: { id: id, title: title, body: body } });
     };
 
-    const handleEdit = (id, title, body) => {
-        console.log(id+ " edit");
-        navigate(`/edit/${id}`, { state: { id: id, title: title, body: body } });
+    const deleteComment = (commentId) => {
+        setArticleComments(articleComments.filter(comment => comment.id !== commentId));
     };
 
     const addComment = (newComment) => {
@@ -31,6 +31,7 @@ const ReadArticle = () => {
                 return res.json();
             })
             .then(data => {
+                //console.log(data);
                 setArticle(data);
                 setArticleComments(data.commentEntities);
                 if (user && data) {
@@ -40,33 +41,29 @@ const ReadArticle = () => {
             .catch(err => {
                 console.log(err);
             })
-    });
+    }, []); 
 
     return (
         <div>
             <h1 className="title">{article?.title}</h1>
             <p className="body">{article?.body}</p>
             <div className="actions">
-                <button 
-                    className={`editIcon ${isAuthor ? '' : 'editIconDisabled'}`}
-                    onClick={() => handleEdit(id, article.title, article.body)}
-                    disabled={!isAuthor}
-                 >Edit
-                 </button>
-                <button 
-                    className={`deleteIcon ${isAuthor ? '' : 'deleteDisabled'}`}  
-                    onClick={() => handleDelete(id)} 
-                    disabled={isAuthor}
-                 >Delete
-                 </button>
+                {isAuthor && (
+                    <button 
+                        className="editIcon"
+                        onClick={() => handleEdit(id, article.title, article.body)}
+                    >
+                        Edit
+                    </button>
+                )}
             </div>
             <h4 className="commentsLabel">Comments:</h4>
             <div>
                 <CreateComment postId={id} addComment={addComment}/>
-                <ul>
+                <ul className="commentList">
                     {articleComments && articleComments.map((comment, index) => (
-                    <li key={index} className="commentBody">
-                        {comment.body}
+                    <li key={index}>
+                        <Comment onDelete={deleteComment} comment={comment} userId={user.id} authorId={comment.authorId} articleId={id}/>
                     </li>
                     ))}
                 </ul>

@@ -35,15 +35,25 @@ h3 {
 }
 
 .commentBody {
-  text-align: left;
-  margin-left: 2rem;
-  margin-right: 2rem;
-  padding-left: 3rem;
-  border-radius: calc(0.1 * 100px);
-  box-shadow: 0px 4px 14px 0px rgba(70, 70, 70, 0.38);
+  text-align: justify;
+  margin-right: 2%;
   background: #fff;
   margin-bottom: 0.35rem;
   word-wrap: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.commentList{
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 1%;
+}
+
+.commentBody:not(.collapsed) {
+  -webkit-line-clamp: unset;
 }
 
 .articleAuthor{
@@ -175,4 +185,27 @@ h3 {
   margin-left: 5.5%;
   margin-right: 5%;
   margin-bottom: 1%;
+}
+
+.toggleButton {
+  border: none;
+  color: rgb(93, 87, 87);
+  text-align: center;
+  text-decoration: underline;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.deleteButton {
+  border: none;
+  color: rgb(106, 95, 90);
+  text-align: center;
+  text-decoration: underline;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 1%;
 }
