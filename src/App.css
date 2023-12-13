@@ -209,3 +209,7 @@ h3 {
   cursor: pointer;
   margin-left: 1%;
 }
+
+.invalid {
+  border: 2px solid red;
+}

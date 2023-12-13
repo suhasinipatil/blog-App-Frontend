@@ -2,32 +2,41 @@ import React, { useState, useContext } from 'react';
 import styles from './styles/Login.module.css';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthContext';
+import { useEffect } from 'react';
 
 const Login = () => {
     const [usernameLoggedIn, setUsernameLoggedIn] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState("");
     const navigate = useNavigate();
+
     const { handleSetUser } = useContext(AuthContext);
     const [usernameError, setUsernameError] = useState("");
     const [passwordError, setPasswordError] = useState("");
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        if(usernameLoggedIn.trim() === "") {
+    const handleUsernameBlur = () => {
+        setError("");
+        if (usernameLoggedIn.trim() === '') {
             setUsernameError("Username cannot be empty");
             setUsernameLoggedIn("");
         } else {
             setUsernameError("");
         }
+    };
 
-        if(password.trim() === "") {
+    const handlePasswordBlur = () => {
+        setError("");
+        if (password.trim() === '') {
             setPasswordError("Password cannot be empty");
             setPassword("");
         } else {
             setPasswordError("");
         }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
         //console.log(usernameLoggedIn, password);
 
         const loginData = {
@@ -41,7 +50,7 @@ const Login = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(loginData),
-            })
+        })
             .then(response => {
                 return response.json();
             })
@@ -53,9 +62,9 @@ const Login = () => {
                     loggedIn: true,
                     username: usernameLoggedIn,
                     id: data.id,
-                  };
+                };
                 handleSetUser(updatedUser);
-                 // Redirect to the home page
+                // Redirect to the home page
                 navigate("/");
             })
             .catch(error => {
@@ -65,7 +74,9 @@ const Login = () => {
                 } else {
                     setError(error.message);
                 }
-        });
+                setUsernameLoggedIn("");
+                setPassword("");
+            });
     };
 
     return (
@@ -73,33 +84,46 @@ const Login = () => {
             <h1 className="loginHeaderStyle">Login</h1>
             <div className={styles.formWrapper}>
                 <form className={styles.form} onSubmit={handleSubmit}>
-                    <input 
+                    <input
                         type="text"
                         placeholder="username"
                         id="username"
-                        required
+                        className={usernameError ? styles.invalid : ''}
                         value={usernameLoggedIn}
                         onChange={(e) => setUsernameLoggedIn(e.target.value)}
+                        onBlur={handleUsernameBlur}
                     />
-                    <div id="usernameError" class={styles.errorMessage}>{usernameError}</div>
-                    <input 
+                    <div
+                        id="usernameError"
+                        className={styles.errorMessage}
+                    >
+                        {usernameError}
+                    </div>
+                    <input
                         type="text"
                         placeholder="password"
                         id="password"
-                        required
+                        className={passwordError ? styles.invalid : ''}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        onBlur={handlePasswordBlur}
                     />
-                    <div id="passwordError" class={styles.errorMessage}>{passwordError}</div>
-                    <button>Login</button>
+                    <div id="passwordError" className={styles.errorMessage}>{passwordError}</div>
+                    <button
+                        type="submit"
+                        disabled={usernameError || passwordError}
+                        className={usernameError || passwordError ? styles.buttonDisabled : styles.buttonEnabled}
+                    >
+                        Login
+                    </button>
                     <p className={styles.signupText}>Don't have an account? <a href="/signup">Sign up</a></p>
+                    {error && (
+                        <div className={styles.errorContainer}>
+                            <p className={styles.errorMessage}>{error}</p>
+                        </div>
+                    )}
                 </form>
             </div>
-            {error && (
-                    <div className={styles.errorContainer}>
-                        <p className={styles.errorMessage}>{error}</p>
-                    </div>
-            )}
         </div>
     );
 };
