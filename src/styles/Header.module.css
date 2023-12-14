@@ -1,0 +1,42 @@
+.write {
+    font-size: large;
+    border: none;
+    background-color: #fff;
+    margin-left: 50%;
+    margin-right: auto;
+}
+
+.writeRef {
+    text-decoration: none;
+    color: black;
+}
+
+.writeIcon {
+    margin-right: 8px;
+}
+
+.write:hover {
+    text-decoration-color: gray;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 500;
+    margin-left: 8%;
+    margin-bottom: 0%;
+    margin-top: 0%;
+}
+
+.headerDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.login {
+    font-size: large;
+    border: none;
+    background-color: #fff;
+    margin-right: 5%;
+    margin-left: auto;
+}

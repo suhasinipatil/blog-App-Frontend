@@ -7,13 +7,13 @@ import CreateArticle from "./CreateArticle";
 import ReadArticle from "./ReadArticle";
 
 const BlogApp = () => {
-    return(
+    return (
         <Routes>
             <Route path="/" element={<ArticleList />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/edit/:id" element={<EditArticle />} />
-            <Route path="/create" element={<CreateArticle />} />
+            <Route path="/write" element={<CreateArticle />} />
             <Route path="/articles/:id" element={<ReadArticle />} />
             <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>

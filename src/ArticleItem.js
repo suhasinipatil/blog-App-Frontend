@@ -2,7 +2,7 @@
 
 import { Link } from "react-router-dom";
 
-const ArticleItem = ({props}) => {
+const ArticleItem = ({ props }) => {
     return (
         <div className="articleItem">
             <div className="titleAuthor">

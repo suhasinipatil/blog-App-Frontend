@@ -1,12 +1,19 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import styles from './styles/Header.module.css';
+
 const Header = () => {
 
     return (
-        <header className="titleAuthor">
-            <h1 className="articleTitle">Blog App</h1>
-            <button className="articleAuthor">
-                <a href="/create">create</a>
+        <header className={styles.headerDiv}>
+            <h1 className={styles.title}>Blog App</h1>
+            <button className={styles.write}>
+                <a href="/write" className={styles.writeRef}>
+                    <FontAwesomeIcon icon={faPenToSquare} className={styles.writeIcon} />
+                    Write
+                </a>
             </button>
-            <button className="articleAuthor">
+            <button className={styles.login}>
                 <a href="/login">Login</a>
             </button>
         </header>

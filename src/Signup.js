@@ -148,7 +148,7 @@ const Signup = () => {
                     <tr>
                         <td colSpan="2">
                             <h4 className={styles.labelStyle}>Bio</h4>
-                            <input
+                            <textarea
                                 type="rich text"
                                 value={bio}
                                 onChange={handleBioChange}

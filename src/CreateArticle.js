@@ -15,22 +15,22 @@ const CreateArticle = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if(title.trim() === "") {
+        if (title.trim() === "") {
             alert("Title cannot be empty");
             return;
         }
-        
-        if(title.trim().length < 5) {
+
+        if (title.trim().length < 5) {
             alert("Title should be at least 5 characters long");
             return;
         }
 
-        if(body.trim() === "") {
+        if (body.trim() === "") {
             alert("Content cannot be empty");
             return;
         }
 
-        const article = { 
+        const article = {
             title: title,
             body: body,
         };
@@ -42,7 +42,7 @@ const CreateArticle = () => {
                 Authorization: `Bearer ${user.token}`,
             },
             body: JSON.stringify(article),
-            })
+        })
             .then(response => {
                 return response.json();
             })
@@ -55,20 +55,19 @@ const CreateArticle = () => {
             })
             .catch(error => {
                 console.log(error);
-        });
+            });
     };
-    
+
     return (
         <div>
-            <Header />
             <form className={styles.form} onSubmit={handleSubmit}>
-                <input 
-                        type="text"
-                        placeholder="Title"
-                        required
-                        value={title}
-                        className={styles.inputheading}
-                        onChange={(e) => setTitle(e.target.value)}
+                <input
+                    type="text"
+                    placeholder="Title"
+                    required
+                    value={title}
+                    className={styles.inputheading}
+                    onChange={(e) => setTitle(e.target.value)}
                 />
                 <textarea
                     placeholder="Content"
@@ -78,7 +77,7 @@ const CreateArticle = () => {
                 ></textarea>
                 <button className={`${styles.postButton} ${user.loggedIn ? '' : styles.disabled}`} disabled={!user.loggedIn}>POST</button>
             </form>
-            
+
         </div>
     );
 }
