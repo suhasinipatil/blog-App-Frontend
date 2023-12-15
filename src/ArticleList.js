@@ -30,14 +30,14 @@ const ArticleList = () => {
 
     return (
         <div>
-            <Header/>
-            <h2 className="welcomeMessage">Welcome {user.username}</h2>
+            <Header />
+            {/* <h2 className="welcomeMessage">Welcome {user.username}</h2> */}
             <ul>
                 {articles.map((article) => {
                     return (
-                        <ArticleItem 
-                            key={article.id} 
-                            props={article} 
+                        <ArticleItem
+                            key={article.id}
+                            props={article}
                         />
                     );
                 })}
