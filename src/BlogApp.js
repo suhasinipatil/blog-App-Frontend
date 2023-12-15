@@ -5,6 +5,7 @@ import Signup from "./Signup";
 import EditArticle from "./EditArticle";
 import CreateArticle from "./CreateArticle";
 import ReadArticle from "./ReadArticle";
+import AboutMe from "./AboutMe";
 
 const BlogApp = () => {
     return (
@@ -14,6 +15,7 @@ const BlogApp = () => {
             <Route path="/signup" element={<Signup />} />
             <Route path="/edit/:id" element={<EditArticle />} />
             <Route path="/write" element={<CreateArticle />} />
+            <Route path="/about" element={<AboutMe />} />
             <Route path="/articles/:id" element={<ReadArticle />} />
             <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
