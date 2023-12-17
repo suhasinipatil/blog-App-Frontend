@@ -6,6 +6,7 @@ import EditArticle from "./EditArticle";
 import CreateArticle from "./CreateArticle";
 import ReadArticle from "./ReadArticle";
 import AboutMe from "./AboutMe";
+import Profile from "./Profile";
 
 const BlogApp = () => {
     return (
@@ -16,6 +17,7 @@ const BlogApp = () => {
             <Route path="/edit/:id" element={<EditArticle />} />
             <Route path="/write" element={<CreateArticle />} />
             <Route path="/about" element={<AboutMe />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/articles/:id" element={<ReadArticle />} />
             <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>

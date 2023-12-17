@@ -8,6 +8,9 @@ const AuthProvider = ({ children }) => {
     loggedIn: false,
     username: '',
     id: '',
+    bio: '',
+    image: '',
+    email: ''
   });
 
   const handleSetUser = (userData) => {

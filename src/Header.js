@@ -2,8 +2,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles/Header.module.css';
 import logo from './Images/smallerblozy.PNG';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from './AuthContext';
 
 const Header = () => {
+    const { user } = useContext(AuthContext);
+    const [isLoggedIn, setIsLoggedIn] = useState(user.loggedIn);
 
     return (
         <header className={styles.headerDiv}>
@@ -21,9 +25,20 @@ const Header = () => {
                         Write
                     </a>
                 </button>
-                <button className={styles.login}>
-                    <a href="/login" className={styles.writeRef}>Login</a>
-                </button>
+                {isLoggedIn ? (
+                    <>
+                        <button className={styles.login}>
+                            <a href="/profile" className={styles.writeRef}>Profile</a>
+                        </button>
+                        <button className={styles.login} onClick={() => setIsLoggedIn(false)}>
+                            Logout
+                        </button>
+                    </>
+                ) : (
+                    <button className={styles.login}>
+                        <a href="/login" className={styles.writeRef} onClick={() => setIsLoggedIn(true)}>Login</a>
+                    </button>
+                )}
             </div>
         </header>
     );

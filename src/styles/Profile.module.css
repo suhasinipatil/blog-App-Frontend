@@ -1,0 +1,125 @@
+.label {
+    margin-left: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.table {
+    width: auto;
+    height: fit-content;
+    margin-left: 10%;
+    border-collapse: collapse;
+    margin-top: 2%;
+}
+
+.label,
+.labelContent {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.label {
+    background-color: #f2f2f2;
+    font-weight: lighter;
+}
+
+.labelContent {
+    background-color: #fff;
+    margin-left: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+
+.tabs {
+    display: flex;
+    flex-direction: start;
+    justify-content: flex-start;
+    border-bottom: rgb(170, 169, 169, 0.5) solid 1px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.welcomeMessage {
+    text-align: left;
+    line-height: 1.5em;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.aboutButton {
+    font-size: large;
+    border: none;
+    background-color: #fff;
+    margin-left: 5%;
+}
+
+.aboutButton:hover {
+    text-decoration-color: rgb(113, 97, 203);
+}
+
+.blogsButton {
+    font-size: large;
+    border: none;
+    background-color: #fff;
+    margin-left: 10%;
+}
+
+.blogsButton:hover {
+    text-decoration-color: rgb(113, 97, 203);
+}
+
+.profileContainer {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    margin-left: 10%;
+}
+
+.userImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.editProfileButton {
+    background-color: #4CAF50;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.blogsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.blogPost {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    margin-left: 10%;
+    margin-top: 0.5%;
+    margin-right: 10%;
+}
+
+.blogTitle {
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.blogContent {
+    font-size: 16px;
+    padding: 0%;
+}
