@@ -20,7 +20,6 @@ const ArticleList = () => {
                 } else {
                     setArticles(data);
                 }
-                //navigate('/');
             })
             .catch(err => {
                 console.log(err);

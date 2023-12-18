@@ -1,46 +1,53 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import Header from './Header';
 import styles from './styles/Profile.module.css';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
     const { user } = useContext(AuthContext);
     const [selectedTab, setSelectedTab] = useState('about');
+    const [blogs, setBlogs] = useState();
 
-    const blogs = [
-        {
-            title: 'My First Blog',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.'
-        },
-        {
-            title: 'My Second Blog',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.'
-        },
-        {
-            title: 'My Third Blog',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.'
-        },
-        {
-            title: 'My Fourth Blog',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.'
-        },
-        {
-            title: 'My Fifth Blog',
-            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.'
-        },
-    ];
+    useEffect(() => {
+        console.log(selectedTab);
+    }, [selectedTab]);
+
+    useEffect(() => {
+        fetch(`http://localhost:8888/articles?authorName=${user.username}`)
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                //console.log(data);
+                setBlogs(data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }, []);
 
     return (
         <div>
             <Header />
             <div className={styles.profileContainer}>
-                <img src={user.image} alt="User" className={styles.userImage} />
+                <img src={user.image} alt="Image" className={styles.userImage} />
                 <h2 className={styles.welcomeMessage}>{user.username}</h2>
                 <button className={styles.editProfileButton}>Edit Profile</button>
             </div>
             <div className={styles.tabs}>
-                <button onClick={() => setSelectedTab('about')} className={styles.aboutButton}>About</button>
-                <button onClick={() => setSelectedTab('blogs')} className={styles.blogsButton}>Blogs</button>
+                <button
+                    className={styles.aboutButton}
+                    onClick={() => setSelectedTab('about')}
+                >
+                    About
+                </button>
+                <button
+                    className={styles.blogsButton}
+                    onClick={() => setSelectedTab('blogs')}
+                >
+                    Blogs
+                </button>
             </div>
             {selectedTab === 'about' ? (
                 <div>
@@ -66,7 +73,13 @@ const Profile = () => {
                     {blogs.map((blog, index) => (
                         <div key={index} className={styles.blogPost}>
                             <h3 className={styles.blogTitle}>{blog.title}</h3>
-                            <p className={styles.blogContent}>{blog.content}</p>
+                            <p className={styles.blogContent}>
+                                <Link to={{
+                                    pathname: `/articles/${blog.id}`
+                                }} className={styles.linktext}>
+                                    {blog.body}
+                                </Link>
+                            </p>
                         </div>
                     ))}
                 </div>

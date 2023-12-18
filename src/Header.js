@@ -12,9 +12,10 @@ const Header = () => {
     return (
         <header className={styles.headerDiv}>
             <h1 className={styles.title}>
-                <img src={logo} alt="Blog App" />
+                <a href="/" className={styles.titleRef}>
+                    <img src={logo} alt="Blog App" />
+                </a>
             </h1>
-            {/* <h1 className={styles.title}>Blog App</h1> */}
             <div className={styles.buttonContainer}>
                 <button className={styles.about}>
                     <a href="/about" className={styles.writeRef}>About</a>

@@ -57,8 +57,14 @@
     margin-left: 5%;
 }
 
-.aboutButton:hover {
-    text-decoration-color: rgb(113, 97, 203);
+.selected {
+    background-color: #ddd;
+}
+
+.aboutButton:focus,
+.blogsButton:focus {
+    background-color: #ddd;
+    /* Change this to the color you want */
 }
 
 .blogsButton {
@@ -66,10 +72,6 @@
     border: none;
     background-color: #fff;
     margin-left: 10%;
-}
-
-.blogsButton:hover {
-    text-decoration-color: rgb(113, 97, 203);
 }
 
 .profileContainer {
@@ -87,7 +89,6 @@
 
 .editProfileButton {
     background-color: #4CAF50;
-    /* Green */
     border: none;
     color: white;
     padding: 15px 32px;
@@ -122,4 +123,17 @@
 .blogContent {
     font-size: 16px;
     padding: 0%;
+    text-align: justify;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    word-wrap: break-word;
+    /* Adjust the value to show 2-3 lines */
+    -webkit-box-orient: vertical;
+}
+
+.linktext {
+    color: inherit;
+    text-decoration: none;
 }
