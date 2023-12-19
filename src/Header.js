@@ -2,12 +2,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles/Header.module.css';
 import logo from './Images/smallerblozy.PNG';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from './AuthContext';
 
 const Header = () => {
     const { user } = useContext(AuthContext);
-    const [isLoggedIn, setIsLoggedIn] = useState(user.loggedIn);
+    const [isLoggedIn, setIsLoggedIn] = useState(user ? user.loggedIn : false);
+
+    useEffect(() => {
+        setIsLoggedIn(user ? user.loggedIn : false);
+    }, [user]);
 
     return (
         <header className={styles.headerDiv}>
