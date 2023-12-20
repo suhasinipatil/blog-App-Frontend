@@ -18,6 +18,19 @@ const AuthProvider = ({ children }) => {
     localStorage.setItem('user', JSON.stringify(userData));
   };
 
+  const handleUnsetUser = () => {
+    setUser({
+      token: '',
+      loggedIn: false,
+      username: '',
+      id: '',
+      bio: '',
+      image: '',
+      email: ''
+    });
+    localStorage.removeItem('user');
+  };
+
   useEffect(() => {
     const handleLoad = () => {
       // Check if the token exists in localStorage
@@ -40,6 +53,7 @@ const AuthProvider = ({ children }) => {
       value={{
         user,
         handleSetUser,
+        handleUnsetUser
       }}
     >
       {children}

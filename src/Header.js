@@ -6,12 +6,37 @@ import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from './AuthContext';
 
 const Header = () => {
-    const { user } = useContext(AuthContext);
+    const { user, handleUnsetUser } = useContext(AuthContext);
     const [isLoggedIn, setIsLoggedIn] = useState(user ? user.loggedIn : false);
 
     useEffect(() => {
         setIsLoggedIn(user ? user.loggedIn : false);
     }, [user]);
+
+    const logout = () => {
+        console.log('logout');
+        fetch('http://localhost:8888/users/logout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Token ${user.token}`,
+            },
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text(); // use text() instead of json() because the response is a string
+            })
+            .then(data => {
+                console.log(data);
+                setIsLoggedIn(false);
+                handleUnsetUser();
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
 
     return (
         <header className={styles.headerDiv}>
@@ -35,7 +60,7 @@ const Header = () => {
                         <button className={styles.login}>
                             <a href="/profile" className={styles.writeRef}>Profile</a>
                         </button>
-                        <button className={styles.login} onClick={() => setIsLoggedIn(false)}>
+                        <button className={styles.login} onClick={logout}>
                             Logout
                         </button>
                     </>

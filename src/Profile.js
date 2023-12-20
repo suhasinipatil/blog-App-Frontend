@@ -2,30 +2,33 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import Header from './Header';
 import styles from './styles/Profile.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Profile = () => {
     const { user } = useContext(AuthContext);
     const [selectedTab, setSelectedTab] = useState('about');
     const [blogs, setBlogs] = useState();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        console.log(selectedTab);
+        //console.log(selectedTab);
     }, [selectedTab]);
 
     useEffect(() => {
-        fetch(`http://localhost:8888/articles?authorName=${user.username}`)
-            .then(res => {
-                return res.json();
-            })
-            .then(data => {
-                //console.log(data);
-                setBlogs(data);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    }, [user.username]);
+        if (!user) {
+            navigate('/login');
+            setBlogs([]);
+        } else {
+            fetch(`http://localhost:8888/articles?authorName=${user.username}`)
+                .then(res => {
+                    return res.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    setBlogs(data);
+                });
+        }
+    }, [user, navigate]);
 
     return (
         <div>

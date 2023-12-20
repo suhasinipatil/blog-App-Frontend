@@ -55,7 +55,7 @@ const Login = () => {
                 return response.json();
             })
             .then(data => {
-                console.log(data);
+                //console.log(data);
                 // Set the token in AuthContext
                 const updatedUser = {
                     token: data.token,
