@@ -106,3 +106,36 @@
   font-size: 1rem;
   display: block;
 }
+
+.imageContainer {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #ccc;
+  /* or any color you want for the empty circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-left: 200px;
+}
+
+.profileImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.editIcon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+}

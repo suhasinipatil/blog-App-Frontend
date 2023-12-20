@@ -62,6 +62,9 @@ const Login = () => {
                     loggedIn: true,
                     username: usernameLoggedIn,
                     id: data.id,
+                    bio: data.bio,
+                    email: data.email,
+                    image: data.image,
                 };
                 handleSetUser(updatedUser);
                 // Redirect to the home page
