@@ -3,6 +3,7 @@ import { AuthContext } from './AuthContext';
 import Header from './Header';
 import styles from './styles/Profile.module.css';
 import { Link } from 'react-router-dom';
+import logo from './Images/smallerblozy.PNG';
 
 const Profile = () => {
     const { user } = useContext(AuthContext);
@@ -31,7 +32,7 @@ const Profile = () => {
         <div>
             <Header />
             <div className={styles.profileContainer}>
-                <img src={user.image} alt="Image" className={styles.userImage} />
+                <img src={logo} alt="Image" className={styles.userImage} />
                 <h2 className={styles.welcomeMessage}>{user.username}</h2>
                 <button className={styles.editProfileButton}>Edit Profile</button>
             </div>
