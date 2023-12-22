@@ -16,6 +16,7 @@ const AuthProvider = ({ children }) => {
   const handleSetUser = (userData) => {
     setUser(userData);
     localStorage.setItem('user', JSON.stringify(userData));
+    //console.log(userData);
   };
 
   const handleUnsetUser = () => {

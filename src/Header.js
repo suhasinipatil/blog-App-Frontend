@@ -14,7 +14,7 @@ const Header = () => {
     }, [user]);
 
     const logout = () => {
-        console.log('logout');
+        //console.log('logout');
         fetch('http://localhost:8888/users/logout', {
             method: 'POST',
             headers: {
@@ -29,9 +29,10 @@ const Header = () => {
                 return response.text(); // use text() instead of json() because the response is a string
             })
             .then(data => {
-                console.log(data);
+                //console.log(data);
                 setIsLoggedIn(false);
                 handleUnsetUser();
+                //navigate('/');
             })
             .catch(error => {
                 console.log(error);

@@ -10,7 +10,7 @@ const Login = () => {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
-    const { handleSetUser } = useContext(AuthContext);
+    const { handleSetUser, user } = useContext(AuthContext);
     const [usernameError, setUsernameError] = useState("");
     const [passwordError, setPasswordError] = useState("");
 
@@ -67,6 +67,7 @@ const Login = () => {
                     image: data.image,
                 };
                 handleSetUser(updatedUser);
+                //console.log(user);
                 // Redirect to the home page
                 navigate("/");
             })
