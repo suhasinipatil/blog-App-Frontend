@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import styles from './styles/Login.module.css';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthContext';
-import { useEffect } from 'react';
 
 const Login = () => {
     const [usernameLoggedIn, setUsernameLoggedIn] = useState('');
@@ -10,7 +9,7 @@ const Login = () => {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
-    const { handleSetUser, user } = useContext(AuthContext);
+    const { handleSetUser } = useContext(AuthContext);
     const [usernameError, setUsernameError] = useState("");
     const [passwordError, setPasswordError] = useState("");
 
@@ -104,7 +103,7 @@ const Login = () => {
                         {usernameError}
                     </div>
                     <input
-                        type="text"
+                        type="password"
                         placeholder="password"
                         id="password"
                         className={passwordError ? styles.invalid : ''}
